@@ -3,7 +3,7 @@ package facture.Modele;
 import jakarta.persistence.*;
 
 @Entity
-@Table
+@Table(name = "Fournisseur")
 public class Fournisseur {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

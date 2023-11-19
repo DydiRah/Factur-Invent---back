@@ -27,5 +27,4 @@ public class Facture {
     @Column(columnDefinition = "text")
     private String photo;
 
-    
 }

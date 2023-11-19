@@ -5,34 +5,27 @@ import jakarta.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name="Utilisateur")
+@Table(name = "Utilisateur")
 public class Utilisateur {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idutilisateur")
-    private int idUtilisateur;
+    int utilisateur_id;
+	String nom;
+	String prenom;
+	String email;
+	String mot_passe;
+	Date date_naissance;
+	String sexe;
+	String statut;
+	String adresse;
+    String contact;
 
-    private String nom;
-    private String prenom;
-    @Column(name = "datenaissance")
-
-    private Date dateNaissance;
-    private String poste;
-    private String email;
-    @Column(name = "motdepasse")
-
-    private String motDePasse;
-
-    public Utilisateur() {
+    public int getUtilisateur_id() {
+        return utilisateur_id;
     }
 
-    public int getIdUtilisateur() {
-        return idUtilisateur;
-    }
-
-    public void setIdUtilisateur(Integer idUtilisateur) {
-        this.idUtilisateur = idUtilisateur;
+    public void setUtilisateur_id(int utilisateur_id) {
+        this.utilisateur_id = utilisateur_id;
     }
 
     public String getNom() {
@@ -51,22 +44,6 @@ public class Utilisateur {
         this.prenom = prenom;
     }
 
-    public Date getDateNaissance() {
-        return dateNaissance;
-    }
-
-    public void setDateNaissance(Date dateNaissance) {
-        this.dateNaissance = dateNaissance;
-    }
-
-    public String getPoste() {
-        return poste;
-    }
-
-    public void setPoste(String poste) {
-        this.poste = poste;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -75,20 +52,51 @@ public class Utilisateur {
         this.email = email;
     }
 
-    public String getMotDePasse() {
-        return motDePasse;
+    public String getMot_passe() {
+        return mot_passe;
     }
 
-    public void setMotDePasse(String motDePasse) {
-        this.motDePasse = motDePasse;
+    public void setMot_passe(String mot_passe) {
+        this.mot_passe = mot_passe;
     }
 
-     public Utilisateur(String nom, String prenom, Date dateNaissance, String poste, String email, String motDePasse) {
-        this.nom = nom;
-        this.prenom = prenom;
-        this.dateNaissance = dateNaissance;
-        this.poste = poste;
-        this.email = email;
-        this.motDePasse = motDePasse;
+    public Date getDate_naissance() {
+        return date_naissance;
+    }
+
+    public void setDate_naissance(Date date_naissance) {
+        this.date_naissance = date_naissance;
+    }
+
+    public String getSexe() {
+        return sexe;
+    }
+
+    public void setSexe(String sexe) {
+        this.sexe = sexe;
+    }
+
+    public String getStatut() {
+        return statut;
+    }
+
+    public void setStatut(String statut) {
+        this.statut = statut;
+    }
+
+    public String getAdresse() {
+        return adresse;
+    }
+
+    public void setAdresse(String adresse) {
+        this.adresse = adresse;
+    }
+
+    public String getContact() {
+        return contact;
+    }
+
+    public void setContact(String contact) {
+        this.contact = contact;
     }
 }

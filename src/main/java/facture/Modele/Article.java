@@ -1,21 +1,69 @@
 package facture.Modele;
 
 import jakarta.persistence.*;
+
 @Entity
-@Table(name = "article")
+@Table
 public class Article {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int art_id;
+    int article_id;
+    String designation;
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    Category category_id;
 
-    private String art_designation;
+    @ManyToOne
+    @JoinColumn(name = "fournisseur_id")
+    Fournisseur fournisseur_id;
+    double prix_unitaire;
+    String unite;
 
-    private String art_category;
+    public int getArticle_id() {
+        return article_id;
+    }
 
-    private int art_fournisseur;
+    public void setArticle_id(int article_id) {
+        this.article_id = article_id;
+    }
 
-    private double art_prix_unitaire;
+    public String getDesignation() {
+        return designation;
+    }
 
-    private String art_unite;
+    public void setDesignation(String designation) {
+        this.designation = designation;
+    }
 
+    public Category getCategory_id() {
+        return category_id;
+    }
+
+    public void setCategory_id(Category category_id) {
+        this.category_id = category_id;
+    }
+
+    public Fournisseur getFournisseur_id() {
+        return fournisseur_id;
+    }
+
+    public void setFournisseur_id(Fournisseur fournisseur_id) {
+        this.fournisseur_id = fournisseur_id;
+    }
+
+    public double getPrix_unitaire() {
+        return prix_unitaire;
+    }
+
+    public void setPrix_unitaire(double prix_unitaire) {
+        this.prix_unitaire = prix_unitaire;
+    }
+
+    public String getUnite() {
+        return unite;
+    }
+
+    public void setUnite(String unite) {
+        this.unite = unite;
+    }
 }

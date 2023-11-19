@@ -5,9 +5,11 @@ import facture.Modele.Fournisseur;
 import facture.Repos.ArticleRepository;
 import facture.Repos.FournisseurRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class ArticleService {
     private final ArticleRepository articleRepository;
 
@@ -22,7 +24,7 @@ public class ArticleService {
         return (List<Article>) articleRepository.findAll();
     }
 
-    public List<Article> getAllArticleByName(String article){
-        return null;
+    public List<Article> getAllArticleByName(String article_demander){
+        return articleRepository.getArtileByDesignation(article_demander);
     }
 }

@@ -5,9 +5,11 @@ import facture.Modele.Utilisateur;
 import facture.Repos.FournisseurRepository;
 import facture.Repos.UtilisateurRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class FournisseurService {
     private final FournisseurRepository fournisseurRepository;
 

@@ -9,6 +9,24 @@ public class ProformatFacture {
     Article article;
     double quantite;
     String photo_url_facture;
+    String motif;
+    String service;
+
+    public String getMotif() {
+        return motif;
+    }
+
+    public void setMotif(String motif) {
+        this.motif = motif;
+    }
+
+    public String getService() {
+        return service;
+    }
+
+    public void setService(String service) {
+        this.service = service;
+    }
 
     public Fournisseur getFournisseur() {
         return fournisseur;

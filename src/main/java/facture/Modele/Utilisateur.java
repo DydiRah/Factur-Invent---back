@@ -8,16 +8,6 @@ import java.util.Date;
 @Table(name="Utilisateur")
 public class Utilisateur {
 
-    public Utilisateur(String nom, String prenom, Date dateNaissance, String poste, String email, String motDePasse) {
-        this.nom = nom;
-        this.prenom = prenom;
-        this.dateNaissance = dateNaissance;
-        this.poste = poste;
-        this.email = email;
-        this.motDePasse = motDePasse;
-    }
-
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idutilisateur")
@@ -93,4 +83,12 @@ public class Utilisateur {
         this.motDePasse = motDePasse;
     }
 
+     public Utilisateur(String nom, String prenom, Date dateNaissance, String poste, String email, String motDePasse) {
+        this.nom = nom;
+        this.prenom = prenom;
+        this.dateNaissance = dateNaissance;
+        this.poste = poste;
+        this.email = email;
+        this.motDePasse = motDePasse;
+    }
 }

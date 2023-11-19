@@ -2,12 +2,7 @@ package facture.Controller;
 
 import java.util.List;
 
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.bind.annotation.*;
 import facture.Modele.DetailFacture;
 import facture.Modele.Facture;
 import facture.Service.DetailFactureService;
@@ -29,4 +24,16 @@ public class DetailFactureController {
     public List<DetailFacture> getDetailFacture(@PathVariable Facture facture_id) {
         return fact_sv.getAllDetailFacture(facture_id);
     }
+
+    @PostMapping
+    public DetailFacture ajoutDetailFacture(@RequestBody DetailFacture detailFacture){
+        return fact_sv.creerDetailFacture(detailFacture);
+    }
+
+    @PutMapping("/{id}")
+    public DetailFacture modifierDetailFacture(@PathVariable Integer id,@RequestBody DetailFacture detailFacture){
+        return null;
+    }
+
+    
 }

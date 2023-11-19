@@ -5,8 +5,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import ch.qos.logback.classic.pattern.Util;
 import facture.Modele.Facture;
+import facture.Modele.Utilisateur;
+import facture.Repos.DetailFactureRepository;
 import facture.Repos.FactureRepository;
+import facture.Repos.UtilisateurRepository;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 
 @Service
@@ -15,15 +20,25 @@ public class FactureService {
     public FactureService(){}
     @Autowired
     private FactureRepository fact_rep;
+    private UtilisateurRepository utilisateurRepository;
+    private DetailFactureRepository det_fact_rep;
     
     @Transactional
     public Facture creerFacture(Facture facture) {
+        if (facture.getFact_utilisateur() == null) {
+            throw new IllegalArgumentException("Impossible de trouver la personne associer à cette facture.");
+        }
+        Utilisateur utilisateur = utilisateurRepository.findById(
+            facture.getFact_utilisateur().getUtilisateur_id()
+        ).orElseThrow(() -> new EntityNotFoundException("Utilisateur invalide for ID: " + facture.getFact_utilisateur().getUtilisateur_id()));
+        facture.setFact_utilisateur(utilisateur);
         return fact_rep.save(facture);
     }
 
     @Transactional
     public List<Facture> getAllFacture() {
-        return fact_rep.findAll();
+        List<Facture> list = fact_rep.findAll();
+        return list;
     }
 
     @Transactional

@@ -13,7 +13,6 @@ public class Facture {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int fact_id;
 
-    //private int fact_utilisateur;
     @ManyToOne
 	@JoinColumn(name = "utilisateur_id")
     private Utilisateur fact_utilisateur;

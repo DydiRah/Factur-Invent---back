@@ -22,7 +22,7 @@ public class ArticleService {
         return (List<Article>) articleRepository.findAll();
     }
 
-    public List<Article> getAllArticleByName(String article){
-        return null;
+    public List<Article> getAllArticleByName(String article_demander){
+        return articleRepository.getArtileByDesignation(article_demander);
     }
 }

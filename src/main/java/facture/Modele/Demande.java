@@ -12,7 +12,9 @@ public class Demande {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int demande_id;
 	Date demande_date;
-	int utilisateur_id;
+	@ManyToOne
+	@JoinColumn(name = "utilisateur_id")
+	Utilisateur utilisateur_id;
 	String article;
 	double quantite;
 	String motif;
@@ -34,11 +36,11 @@ public class Demande {
 		this.demande_date = demande_date;
 	}
 
-	public int getUtilisateur_id() {
+	public Utilisateur getUtilisateur_id() {
 		return utilisateur_id;
 	}
 
-	public void setUtilisateur_id(int utilisateur_id) {
+	public void setUtilisateur_id(Utilisateur utilisateur_id) {
 		this.utilisateur_id = utilisateur_id;
 	}
 

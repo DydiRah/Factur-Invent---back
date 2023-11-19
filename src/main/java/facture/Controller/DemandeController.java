@@ -4,8 +4,6 @@ import facture.Modele.Demande;
 import facture.Service.DemandeService;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
-
 @RestController
 @RequestMapping("/demandes")
 @CrossOrigin(origins = "http://localhost:4200/")

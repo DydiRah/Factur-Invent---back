@@ -1,8 +1,6 @@
 package facture.Controller;
 
-import facture.Modele.Demande;
 import facture.Modele.Utilisateur;
-import facture.Service.DemandeService;
 import facture.Service.UtilisateurService;
 import org.springframework.web.bind.annotation.*;
 

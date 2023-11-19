@@ -1,8 +1,12 @@
 package facture.Modele;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
+@Setter
+@Getter
 @Table(name = "Detail_facture")
 public class DetailFacture {
     @Id
@@ -11,7 +15,7 @@ public class DetailFacture {
 
     @ManyToOne
     @JoinColumn(name = "facture_id")
-    private Facture det_facture_facture;
+    private Facture detFactureFacture;
 
     @ManyToOne
     @JoinColumn(name = "art_id")
@@ -19,6 +23,5 @@ public class DetailFacture {
 
     private int quantite;
 
-    // Getters and setters
 }
 

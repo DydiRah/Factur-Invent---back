@@ -26,7 +26,7 @@ public class FactureService {
         return fact_rep.findAll();
     }
 
-
+    @Transactional
     public Facture updateFacture(int id,Facture facture ) {
         Facture val = fact_rep.findById(id).map(
             fact -> {
@@ -36,7 +36,7 @@ public class FactureService {
                 fact.setFact_prix_total_hors_taxe(facture.getFact_prix_total_hors_taxe());
                 return fact;
             }
-        ).orElseThrow(() -> new RuntimeException("Impossible de trouver le kilométrage avec l'ID : " + id));
+        ).orElseThrow(() -> new RuntimeException("Impossible de trouver la Facture avec l'ID : " + id));
        return fact_rep.save(val);
     }
 

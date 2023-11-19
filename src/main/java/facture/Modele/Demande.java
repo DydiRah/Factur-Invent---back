@@ -1,8 +1,6 @@
 package facture.Modele;
 
 import jakarta.persistence.*;
-import org.springframework.boot.autoconfigure.web.WebProperties;
-
 import java.util.Date;
 
 @Entity

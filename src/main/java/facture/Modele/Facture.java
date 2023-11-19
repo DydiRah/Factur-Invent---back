@@ -3,7 +3,6 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.ArrayList;
 import java.util.List;
 @Entity
 @Setter
@@ -14,7 +13,10 @@ public class Facture {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int fact_id;
 
-    private int fact_utilisateur;
+    //private int fact_utilisateur;
+    @ManyToOne
+	@JoinColumn(name = "utilisateur_id")
+    private Utilisateur fact_utilisateur;
 
     private double fact_tva;
 

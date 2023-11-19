@@ -12,7 +12,6 @@ import org.springframework.context.annotation.ComponentScan;
 		"facture.Repos"
 })
 public class FactureApplication {
-
 	public static void main(String[] args) {
 		SpringApplication.run(FactureApplication.class, args);
 	}

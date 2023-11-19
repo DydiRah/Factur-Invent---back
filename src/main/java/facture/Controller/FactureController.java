@@ -11,6 +11,7 @@ import lombok.AllArgsConstructor;
 @RestController
 @AllArgsConstructor
 @RequestMapping("/Facture")
+@CrossOrigin(origins = "http://localhost:4200/")
 public class FactureController {
     private final FactureService fact_sv;
 
@@ -19,4 +20,8 @@ public class FactureController {
         return fact_sv.getAllFacture();
     }
 
+    @PostMapping
+    public Facture ajoutFacture(@RequestBody Facture facture){
+        return fact_sv.creerFacture(facture);
+    }
 }

@@ -1,9 +1,7 @@
 package facture.Service;
 
 import facture.Modele.Article;
-import facture.Modele.Fournisseur;
 import facture.Repos.ArticleRepository;
-import facture.Repos.FournisseurRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

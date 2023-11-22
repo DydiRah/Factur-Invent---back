@@ -59,4 +59,15 @@ public class FactureService {
        return fact_rep.save(val);
     }
 
+    @Transactional
+    public Facture updateFacture(int id,double prix_total_hors_taxe ) {
+        Facture val = fact_rep.findById(id).map(
+            fact -> {
+                fact.setFact_prix_total_hors_taxe(prix_total_hors_taxe);
+                return fact;
+            }
+        ).orElseThrow(() -> new RuntimeException("Impossible de trouver la Facture avec l'ID : " + id));
+       return fact_rep.save(val);
+    }
+
 }

@@ -3,6 +3,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.Date;
 import java.util.List;
 @Entity
 @Setter
@@ -27,5 +28,7 @@ public class Facture {
 
     @Column(columnDefinition = "text")
     private String photo;
+
+    private Date fact_date;
 
 }

@@ -13,12 +13,12 @@ public class DetailFacture {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int det_facture_id;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "facture_id")
     private Facture detFactureFacture;
 
     @ManyToOne
-    @JoinColumn(name = "art_id")
+    @JoinColumn(name = "article_id")
     private Article article;
 
     private int quantite;

@@ -20,7 +20,9 @@ public class FactureService {
     public FactureService(){}
     @Autowired
     private FactureRepository fact_rep;
+    @Autowired
     private UtilisateurRepository utilisateurRepository;
+    @Autowired
     private DetailFactureRepository det_fact_rep;
     
     @Transactional
@@ -38,9 +40,11 @@ public class FactureService {
     @Transactional
     public List<Facture> getAllFacture() {
         List<Facture> list = fact_rep.findAll();
+        for (Facture facture : list) {
+            facture.setFact_detail_facture(det_fact_rep.findByDetFactureFacture(facture));
+        }
         return list;
     }
-
     @Transactional
     public Facture updateFacture(int id,Facture facture ) {
         Facture val = fact_rep.findById(id).map(

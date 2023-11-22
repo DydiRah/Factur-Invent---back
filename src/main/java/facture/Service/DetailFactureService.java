@@ -13,9 +13,12 @@ import jakarta.transaction.Transactional;
 @Service
 public class DetailFactureService {
 
-    public DetailFactureService(){}
+    private final DetailFactureRepository detail_fact_rep;
+
     @Autowired
-    private DetailFactureRepository detail_fact_rep;
+    public DetailFactureService(DetailFactureRepository detailFactureRepository) {
+        this.detail_fact_rep = detailFactureRepository;
+    }
     
     @Transactional
     public DetailFacture creerDetailFacture(DetailFacture det_fact) {

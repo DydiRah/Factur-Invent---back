@@ -66,4 +66,10 @@ public class Article {
     public void setUnite(String unite) {
         this.unite = unite;
     }
+
+    public Article(){}
+    public Article(int article_id){
+        this.setArticle_id(article_id);
+    }
+    
 }

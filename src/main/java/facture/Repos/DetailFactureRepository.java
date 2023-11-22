@@ -10,4 +10,5 @@ import facture.Modele.Facture;
 @Repository
 public interface DetailFactureRepository extends JpaRepository<DetailFacture,Integer> {
     List<DetailFacture> findByDetFactureFacture(Facture facture);
+
 }

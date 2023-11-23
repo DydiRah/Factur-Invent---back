@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,5 +25,10 @@ public class FournisseurController {
     @GetMapping
     public List<Fournisseur> getAllFournisseurs() {
         return fournisseur_serice.retrieve();
+    }
+
+    @PostMapping
+    public Fournisseur insert(@RequestBody Fournisseur f){
+        return fournisseur_serice.create(f);
     }
 }

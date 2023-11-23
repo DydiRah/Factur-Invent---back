@@ -30,4 +30,20 @@ public class ValidationService {
         validation.setValidation_etat(10);
         return valide_rep.save(validation);
     }
+
+    @Transactional
+    public Validation validationByDepAchat(Validation validation){
+        Demande demande = demande_rep.findById(validation.getDemande_id().getDemande_id())
+        .orElseThrow(() -> new EntityNotFoundException("Demande non valide"));
+        validation.setValidation_etat(20);
+        return valide_rep.save(validation);
+    }
+
+    @Transactional
+    public Validation validationByDAF(Validation validation){
+        Demande demande = demande_rep.findById(validation.getDemande_id().getDemande_id())
+        .orElseThrow(() -> new EntityNotFoundException("Demande non valide"));
+        validation.setValidation_etat(30);
+        return valide_rep.save(validation);
+    }
 }

@@ -31,4 +31,10 @@ public class Facture {
 
     private Date fact_date;
 
+    private String moyen_de_payement;
+
+    private int delais_de_livraison; ///ito atao en jour
+
+    private String extra;///Raha oe misy facilite de payement fa oe zavatra hafa tokony facultatif  
+
 }

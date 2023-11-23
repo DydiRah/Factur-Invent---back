@@ -1,18 +1,12 @@
-create table Utilisateur(
-    idUtilisateur serial primary key,
-    nom varchar(255),
-    prenom varchar(255),
-    dateNaissance date,
-    poste varchar(255),
-    email varchar(255) unique,
-    motDePasse varchar(255)
-);
+table validation
+int idValidation
+int idDemande
+int etat 
+date Validation
 
-create table vehicule(
-    matricule varchar(10) primary key,
-    marque varchar(255),
-    modele varchar(255),
-    anneeFabrication integer,
-    typeCarburant varchar(255),
-    etat integer
-);
+
+table etat:
+    10 en attente
+    20 valide par chef de departement
+    30 valide par chef departement achat
+    40 valide par Directeur Achat Financier

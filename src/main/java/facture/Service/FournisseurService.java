@@ -14,8 +14,8 @@ public class FournisseurService {
     @Autowired
     public FournisseurService(FournisseurRepository fR){fournisseurRepository=fR;}
 
-    public void create(Fournisseur fournisseur){
-        fournisseurRepository.save(fournisseur);
+    public Fournisseur create(Fournisseur fournisseur){
+        return fournisseurRepository.save(fournisseur);
     }
 
     public List<Fournisseur> retrieve(){

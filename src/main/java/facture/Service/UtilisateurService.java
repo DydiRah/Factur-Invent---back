@@ -14,8 +14,8 @@ public class UtilisateurService {
     @Autowired
     public UtilisateurService(UtilisateurRepository uR){utilisateurRepository=uR;}
 
-    public void create(Utilisateur utilisateur){
-        utilisateurRepository.save(utilisateur);
+    public Utilisateur create(Utilisateur utilisateur){
+        return utilisateurRepository.save(utilisateur);
     }
 
     public List<Utilisateur> retrieve(){

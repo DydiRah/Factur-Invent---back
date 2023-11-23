@@ -4,6 +4,8 @@ import facture.Modele.Utilisateur;
 import facture.Service.UtilisateurService;
 import org.springframework.web.bind.annotation.*;
 
+import ch.qos.logback.classic.pattern.Util;
+
 import java.util.List;
 
 @RestController
@@ -16,8 +18,8 @@ public class UtilisateurController {
     public UtilisateurController(UtilisateurService uS){utilisateurService = uS;}
 
     @PostMapping
-    public void create(@RequestBody Utilisateur utilisateur){
-        utilisateurService.create(utilisateur);
+    public Utilisateur create(@RequestBody Utilisateur utilisateur){
+        return utilisateurService.create(utilisateur);
     }
 
 

@@ -45,7 +45,7 @@ public class UtilisateurController {
             return resp;
         }
         for (Utilisateur utilisateur : listUtilisateurs) {
-            if (utilisateur.getMot_passe() == user.getMot_passe()  ) {
+            if (utilisateur.getMot_passe().equals(user.getMot_passe()  )) {
                 resp.put("message", listUtilisateurs);
                 return resp;
             }

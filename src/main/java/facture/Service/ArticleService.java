@@ -15,8 +15,8 @@ public class ArticleService {
     @Autowired
     public ArticleService(ArticleRepository aR){articleRepository=aR;}
 
-    public void create(Article article){
-        articleRepository.save(article);
+    public Article create(Article article){
+        return articleRepository.save(article);
     }
 
     public List<Article> retrieve(){

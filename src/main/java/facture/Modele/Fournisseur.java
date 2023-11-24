@@ -15,6 +15,15 @@ public class Fournisseur {
     @ManyToOne
     @JoinColumn(name = "category_id")
     Category category_id;
+    String mot_passe;
+
+    public String getMot_passe() {
+        return mot_passe;
+    }
+
+    public void setMot_passe(String mot_passe) {
+        this.mot_passe = mot_passe;
+    }
 
     public int getFournisseur_id() {
         return fournisseur_id;

@@ -25,7 +25,7 @@ public class ValidationService {
 
     @Transactional
     public Validation validationByChefDep(Validation validation){
-        Demande demande = demande_rep.findById(validation.getDemande_id().getDemande_id())
+        Demande demande = demande_rep.findById(validation.getDemande().getDemande_id())
         .orElseThrow(() -> new EntityNotFoundException("Demande non valide"));
         validation.setValidation_etat(10);
         return valide_rep.save(validation);
@@ -33,7 +33,7 @@ public class ValidationService {
 
     @Transactional
     public Validation validationByDepAchat(Validation validation){
-        Demande demande = demande_rep.findById(validation.getDemande_id().getDemande_id())
+        Demande demande = demande_rep.findById(validation.getDemande().getDemande_id())
         .orElseThrow(() -> new EntityNotFoundException("Demande non valide"));
         validation.setValidation_etat(20);
         return valide_rep.save(validation);
@@ -41,16 +41,18 @@ public class ValidationService {
 
     @Transactional
     public Validation validationByDAF(Validation validation){
-        Demande demande = demande_rep.findById(validation.getDemande_id().getDemande_id())
+        Demande demande = demande_rep.findById(validation.getDemande().getDemande_id())
         .orElseThrow(() -> new EntityNotFoundException("Demande non valide"));
         validation.setValidation_etat(30);
         return valide_rep.save(validation);
     }
 
     @Transactional
-    public Validation validation(Validation validation){
-        Demande demande = demande_rep.findById(validation.getDemande_id().getDemande_id())
+    public Validation validation(int idDemande){
+        Demande demande = demande_rep.findById(idDemande)
         .orElseThrow(() -> new EntityNotFoundException("Demande non valide"));
-        return valide_rep.save(validation);
+        Validation v = valide_rep.findByDemande(demande);
+        v.setValidation_etat(v.getValidation_etat() + 10);
+        return valide_rep.save(v);
     }
 }

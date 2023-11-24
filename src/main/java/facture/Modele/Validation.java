@@ -22,8 +22,8 @@ public class Validation {
     private int validation_id;
 
     @OneToOne
-    @JoinColumn(name = "demande_id")
-    private Demande demande_id;
+    @JoinColumn(name = "demande_id", referencedColumnName = "demande_id")
+    private Demande demande;
 
     private int validation_etat;
 

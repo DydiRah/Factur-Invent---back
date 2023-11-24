@@ -25,17 +25,16 @@ public class ValidationController {
     private final DemandeService demandeService;
 
     private final DemandeRepository demande_rep;
-    @PostMapping
-    public Validation create(@RequestBody Validation validation){
-        Validation v = validationService.validation(validation);
-        v.setDemande_id(demande_rep.findById(v.getDemande_id().getDemande_id()).get());
+    @PostMapping("/{idDemande}")
+    public Validation create(@PathVariable("idDemande") int idDemande){
+        Validation v = validationService.validation(idDemande);
         return v;
     }
 
     @PostMapping("validation")
     public Validation validation(@RequestBody Validation validation){
         Validation v = validationService.validationByChefDep(validation);
-        v.setDemande_id(demande_rep.findById(v.getDemande_id().getDemande_id()).get());
+        v.setDemande(demande_rep.findById(v.getDemande().getDemande_id()).get());
         return v;
     }
 

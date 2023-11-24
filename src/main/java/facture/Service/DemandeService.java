@@ -3,6 +3,7 @@ package facture.Service;
 import facture.Modele.*;
 import facture.Repos.DemandeRepository;
 import facture.Repos.UtilisateurRepository;
+import facture.Repos.ValidationRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,19 +18,26 @@ public class DemandeService {
     private final DemandeRepository demandeRepository;
     private final UtilisateurRepository utilisateurRepository;
     private final ArticleService articleService;
+    private final ValidationRepository valid_rep;
     @Autowired
     private EntityManager em;
 
 
     @Autowired
-    public DemandeService(DemandeRepository dR,ArticleService aS,UtilisateurRepository uR){
+    public DemandeService(DemandeRepository dR,ArticleService aS,UtilisateurRepository uR,ValidationRepository val_rep){
         demandeRepository = dR;
         articleService = aS;
         utilisateurRepository = uR;
+        valid_rep = val_rep;
     }
 
     @Transactional
     public void create(Demande demande){
+        Validation v=  new Validation();
+        v.setDemande(demande);
+        v.setValidation_etat(0);
+        v.setValidation_date(demande.getDemande_date());
+        valid_rep.save(v);
         demandeRepository.save(demande);
     }
 

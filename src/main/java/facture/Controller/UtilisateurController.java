@@ -41,7 +41,7 @@ public class UtilisateurController {
         HashMap<String,Object> resp = new HashMap<>();
         List<Utilisateur> listUtilisateurs  = user_rep.findByEmail(user.getEmail());
         if (listUtilisateurs.size() == 0) {
-            resp.put("message", "Il n y a pas d'utilisateur avec cet Email");
+            resp.put("message", "emailerreur");
             return resp;
         }
         for (Utilisateur utilisateur : listUtilisateurs) {
@@ -50,7 +50,7 @@ public class UtilisateurController {
                 return resp;
             }
         }
-        resp.put("message", "Votre mot de passe est incorecte");
+        resp.put("message", "mdperreur");
         return resp;
     } 
 

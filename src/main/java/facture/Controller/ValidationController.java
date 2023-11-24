@@ -27,14 +27,14 @@ public class ValidationController {
     private final DemandeRepository demande_rep;
     @PostMapping
     public Validation create(@RequestBody Validation validation){
-        Validation v = validationService.validationByChefDep(validation);
+        Validation v = validationService.validation(validation);
         v.setDemande_id(demande_rep.findById(v.getDemande_id().getDemande_id()).get());
         return v;
     }
 
     @PostMapping("validation")
     public Validation validation(@RequestBody Validation validation){
-        Validation v = validationService.validation(validation);
+        Validation v = validationService.validationByChefDep(validation);
         v.setDemande_id(demande_rep.findById(v.getDemande_id().getDemande_id()).get());
         return v;
     }

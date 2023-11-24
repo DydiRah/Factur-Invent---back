@@ -32,9 +32,15 @@ public class ValidationController {
         return v;
     }
 
+    @PostMapping("validation")
+    public Validation validation(@RequestBody Validation validation){
+        Validation v = validationService.validation(validation);
+        v.setDemande_id(demande_rep.findById(v.getDemande_id().getDemande_id()).get());
+        return v;
+    }
+
     @GetMapping("/{etat}")
     public java.util.List<Validation> getValidationParValidation(@PathVariable("etat") int etat){
-        System.out.println(etat+"------------------------");
         return demandeService.listDemande(etat);
     }
 }

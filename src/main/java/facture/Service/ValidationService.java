@@ -46,4 +46,11 @@ public class ValidationService {
         validation.setValidation_etat(30);
         return valide_rep.save(validation);
     }
+
+    @Transactional
+    public Validation validation(Validation validation){
+        Demande demande = demande_rep.findById(validation.getDemande_id().getDemande_id())
+        .orElseThrow(() -> new EntityNotFoundException("Demande non valide"));
+        return valide_rep.save(validation);
+    }
 }

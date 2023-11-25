@@ -27,6 +27,13 @@ public class FactureService {
     
     @Transactional
     public Facture creerFacture(Facture facture) {
+        if(facture.getMoyen_de_payement() == "TPE"){
+            facture.setFact_tva(40);
+        }else if ( facture.getMoyen_de_payement() == "Espece" ) {
+            facture.setFact_tva(15);
+        }else {
+            facture.setFact_tva(30);
+        }
         if (facture.getFact_utilisateur() == null) {
             throw new IllegalArgumentException("Impossible de trouver la personne associer à cette facture.");
         }

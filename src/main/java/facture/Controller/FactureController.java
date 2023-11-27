@@ -35,6 +35,7 @@ public class FactureController {
         List<DetailFacture> list = f.getFact_detail_facture();
         for (DetailFacture detailFacture : list) {
             ///tsy aiko oe manina fa tsy mintsy ito  :( ----------------------*----------------------------*--------
+            //detailFacture.setDetFactureFacture(f);
             //detailFacture.getDetFactureFacture().setFact_id(f.getFact_id());
             //System.out.println(detailFacture.getDetFactureFacture().getFact_id()+"______");
             detail_fact_sv.creerDetailFacture(detailFacture);

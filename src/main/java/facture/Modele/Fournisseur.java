@@ -8,7 +8,7 @@ public class Fournisseur {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int fournisseur_id;
-    String fournisseur_nom;
+        String fournisseur_nom;
     String adresse;
     String contact;
     String email;

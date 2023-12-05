@@ -1,9 +1,6 @@
 package facture.Controller;
 
-import facture.Modele.Commande;
-import facture.Modele.DetailCommande;
-import facture.Modele.InfoCommande;
-import facture.Modele.Utilisateur;
+import facture.Modele.*;
 import facture.Service.CommandeService;
 import jakarta.websocket.server.PathParam;
 import lombok.AllArgsConstructor;
@@ -33,5 +30,38 @@ public class CommandeController {
     @GetMapping("/details")
     public List<DetailCommande> details(@PathParam("id") int id){
         return commandeService.detailsByCommande(id);
+    }
+
+    @GetMapping("/detailsLivraison")
+    public List<DetailLivraison> detailsLivraison(@PathParam("id") int id){
+        return commandeService.detailsLivraisonByCommande(id);
+    }
+
+    @GetMapping("/detailsReception")
+    public List<DetailReception> detailsReception(@PathParam("id") int id){
+        return commandeService.detailsReceptionByCommande(id);
+    }
+
+    @PostMapping("/demandeLivraison")
+    public void demandeLivraison(@RequestBody List<DetailCommande> detailCommandes){
+        commandeService.changerEtat(detailCommandes.getFirst().getCommande(), 5);
+    }
+
+    @PostMapping("/livrer")
+    public void livrer(@RequestBody List<DetailCommande> detailCommandes){
+        commandeService.changerEtat(detailCommandes.getFirst().getCommande(), 10);
+        commandeService.insertLivraison(detailCommandes);
+    }
+
+    @PostMapping("/recevoir")
+    public void recevoir(@RequestBody List<DetailLivraison> detailLivraisons){
+        commandeService.changerEtat(detailLivraisons.getFirst().getCommande(), 20);
+        commandeService.insertReception(detailLivraisons);
+    }
+
+    @PostMapping("/stocker")
+    public void stocker(@RequestBody List<DetailReception> detailReceptions){
+        commandeService.changerEtat(detailReceptions.getFirst().getCommande(), 30);
+        commandeService.insertStock(detailReceptions);
     }
 }

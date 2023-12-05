@@ -18,6 +18,15 @@ public class Article {
     Fournisseur fournisseur_id;
     double prix_unitaire;
     String unite;
+    String nature;
+
+    public String getNature() {
+        return nature;
+    }
+
+    public void setNature(String nature) {
+        this.nature = nature;
+    }
 
     public int getArticle_id() {
         return article_id;

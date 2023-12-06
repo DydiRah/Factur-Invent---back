@@ -64,4 +64,17 @@ public class CommandeController {
         commandeService.changerEtat(detailReceptions.getFirst().getCommande(), 30);
         commandeService.insertStock(detailReceptions);
     }
+
+    @PostMapping("/sortirStock")
+    public HashMap<String ,String> sortirStock(@RequestBody List<DetailCommande> detailCommandes){
+        HashMap<String,String> reponse = new HashMap<>();
+        try {
+            commandeService.sortirStock(detailCommandes);
+            reponse.put("Message","Success: Sortie de stock.");
+        } catch (Exception e) {
+            reponse.put("Message","Error: " + e.getMessage() + ".");
+        }
+        return reponse;
+    }
+
 }

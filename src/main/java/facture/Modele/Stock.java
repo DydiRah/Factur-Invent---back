@@ -1,6 +1,9 @@
 package facture.Modele;
 
+import facture.Repos.AchatRepository;
+import facture.Repos.ResteViewRepository;
 import facture.Repos.StockRepository;
+import facture.Repos.StockViewRepository;
 import jakarta.persistence.*;
 
 import java.text.SimpleDateFormat;
@@ -38,6 +41,62 @@ public class Stock {
         setUnite(detailReception.getArticle().getUnite());
         setMagasin(new Magasin("M1"));
         setSource(0);
+    }
+
+    public Stock(DetailCommande detailCommande,StockViewRepository stockViewRepository) throws Exception {
+        Magasin magasin = new Magasin("M1");
+        setDate_Stock(new Date());
+        setArticle(detailCommande.getArticle());
+        setQuantite(detailCommande.getQuantite(),magasin,stockViewRepository);
+        setPrix_Unitaire(detailCommande.getPrix_unitaire());
+        setType("Sortie");
+        setUnite(detailCommande.getArticle().getUnite());
+        setMagasin(magasin);
+        setSource(0);
+    }
+
+    //composant
+    public Stock(Stock general, ResteView entree, Achat firstAchat){
+        setDate_Stock(general.getDate_Stock());
+        setArticle(general.getArticle());
+        //1.4*1er prix d'achat
+        setPrix_Unitaire(1.4 * firstAchat.getPrix_Unitaire());
+        setType("Sortie");
+        setUnite(entree.getUnite());
+        setMagasin(new Magasin("M1"));
+        setSource(entree.getId_stock());
+    }
+
+    public void setQuantite(double quantite, Magasin magasin, StockViewRepository stockViewRepository) throws Exception{
+        if(quantite > magasin.getReste(getArticle().getArticle_id(),stockViewRepository)){
+            throw new Exception("Quantite insuffisant .");
+        }
+        setQuantite(quantite);
+    }
+
+
+
+    public List<Stock> decomposer(AchatRepository achatRepository,ResteViewRepository resteViewRepository,StockView stockView){
+        List<ResteView> entrees = getMagasin().getResteByEntree(getArticle().getArticle_id(),resteViewRepository,stockView);
+        List<Stock> sorties = new ArrayList<>();
+        Achat firstAchat = achatRepository.getFirstAchat(getArticle().getArticle_id());
+        double sortie = getQuantite();
+        int idSE = 0;
+        while(sortie != 0){
+            ResteView entree = entrees.get(idSE);
+            Stock composant = new Stock(this,entree,firstAchat);
+            double reste = entree.getReste();
+            if (reste >= sortie){
+                composant.setQuantite(sortie);
+                sortie = 0;
+            }else {
+                sortie = sortie - reste;
+                composant.setQuantite(reste);
+            }
+            sorties.add(composant);
+            idSE++;
+        }
+        return sorties;
     }
 
     public int getId_Stock() {
@@ -112,16 +171,6 @@ public class Stock {
         this.source = source;
     }
 
-    public static List<Stock> get_Article_In_Stock(StockRepository stockRepository, Date date) throws Exception{
-        List<Object[]> article_in_stock = stockRepository.get_Article_In_Stock(date);
-        List<Stock> stocks = new ArrayList<Stock>();
-        for (Object[] as: article_in_stock) {
-            Stock stock = new Stock();
-            stock.setArticle(new Article((int)as[0]));
-            stock.setUnite((String)as[1]);
-            stock.setMagasin(new Magasin((String)as[2]));
-            stocks.add(stock);
-        }
-        return stocks;
-    }
+
+
 }

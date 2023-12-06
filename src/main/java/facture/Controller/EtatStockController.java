@@ -19,7 +19,7 @@ public class EtatStockController {
         HashMap<String,Object> reponse = new HashMap<>();
         try {
             reponse.put("Message","Success.");
-            reponse.put("Data",commandeService.get_Etat_Stock_Between(date1,date2));
+            reponse.put("Data",commandeService.getEtatStocks());
         } catch (Exception e) {
             reponse.put("Message","Error: " + e.getMessage() + " .");
             reponse.put("Data",null);

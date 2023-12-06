@@ -18,7 +18,9 @@ public class CommandeService {
     private final DetailLivraisonRepository detailLivraisonRepository;
     private final DetailReceptionRepository detailReceptionRepository;
     private final StockRepository stockRepository;
-    private final MagasinRepository magasinRepository;
+    private final StockViewRepository stockViewRepository;
+    private final ResteViewRepository resteViewRepository;
+    private final AchatRepository achatRepository;
 
     @Transactional
     public void commander(Commande commande){
@@ -61,6 +63,19 @@ public class CommandeService {
         }
     }
 
+
+    @Transactional
+    public void sortirStock(List<DetailCommande> detailCommandes) throws Exception {
+        for (DetailCommande detailCommande : detailCommandes) {
+            Stock stock = new Stock(detailCommande,stockViewRepository);
+            StockView stockView = stockViewRepository.getById(stock.getArticle().getArticle_id());
+            List<Stock> composants = stock.decomposer(achatRepository,resteViewRepository,stockView);
+            for (Stock composant : composants) {
+                stockRepository.save(composant);
+            }
+        }
+    }
+
     public List<Commande> byState(int etat){
         return commandeRepository.getByEtat(etat);
     }
@@ -83,13 +98,9 @@ public class CommandeService {
         return detailReceptionRepository.getByCommande(commande);
     }
 
-    public StockInfo get_Etat_Stock_Between(String date1String, String date2String)throws Exception {
-        SimpleDateFormat dft = new SimpleDateFormat("yyyy-MM-dd");
-        Date date1 = dft.parse(date1String);
-        Date date2 = dft.parse(date2String);
-        List<EtatStock> etatStocks = EtatStock.get_Etat_By_date(date1,date2,magasinRepository,stockRepository);
-        StockInfo stockInfo = new StockInfo(date1,date2,etatStocks);
-        return stockInfo;
+    public List<StockView> getEtatStocks(){
+        return stockViewRepository.findAll();
     }
+
 
 }
